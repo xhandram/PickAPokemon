@@ -1,11 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Nerko+One:regular);
 
 body {
-  background-color: azure;
+  background-color: #900dff;
+
+  margin: 2em;
 }
 
 .title {
   font-family: Nerko One, sans-serif;
   font-size: 3em;
   text-align: center;
+  color: white;
 }

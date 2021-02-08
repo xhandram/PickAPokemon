@@ -4,6 +4,7 @@ const defaultPokemon = "https://pokeapi.co/api/v2/pokemon/1/";
 
 window.addEventListener("load", (e) => {
   getPokemonList().then(() => getPokemon(defaultPokemon));
+  registerServiceWorker();
 });
 
 pokemonlist.addEventListener("change", (e) => {
@@ -12,7 +13,7 @@ pokemonlist.addEventListener("change", (e) => {
 });
 
 async function getPokemonList() {
-  const url = "https://pokeapi.co/api/v2/pokemon?limit=5";
+  const url = "https://pokeapi.co/api/v2/pokemon?limit=10";
 
   const response = await fetch(url);
   const pokemons = await response.json();
@@ -26,28 +27,43 @@ async function getPokemon(apiurl) {
   const response = await fetch(apiurl);
   const pokemon = await response.json();
 
-  const types = getPokemonTypes(pokemon.types);
   pokemonCard.innerHTML = createPokemonCard(pokemon);
 }
 
 function createPokemonCard(pokemon) {
+  let pokTypes = "";
+  pokemon.types.forEach((type) => {
+    pokTypes += type.type.name + " ";
+  });
   return `
-  <div class="col-md-4 mx-auto m-5 ">
-      <div class="card mx-auto p-4" >
-        <img src="${pokemon.sprites.other.dream_world.front_default}" class="card-img-top" alt="..." width="">
-        <div class="card-body">
+  <div class="col-md-3 mx-auto m-3 ">
+      <div class="card mx-auto" >
+      <div class="card-header text-capitalize pt-1 pb-1 text-center"><h4>${pokemon.name}</h4></div>
+        <img src="${pokemon.sprites.other.dream_world.front_default}" class="text-center mx-auto d-block mt-3 mb-1" alt="${pokemon.name}" width="250px">
+        <div class="card-body text-center text-capitalize p-4">
           <span class="badge bg-warning text-dark float-right">Height:${pokemon.height} </span>
           <span class="badge bg-info text-dark float-right">Weight: ${pokemon.weight}</span>
-          <h5 class="card-title mt-3 text-capitalize">${pokemon.name}</h5>
+          <hr class="divider">
           <p class="card-text">
-            <div class="descripcion">
-              <h4>Pokemon Type</h4>
+            <div class="descripcion ", sytle="font-size:16px;">
+              <p><b>Pokemon Type</b></p>
+              <h4 class="text-danger">${pokTypes}</h4>
 
             </div>
           </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a href="#" class="btn btn-primary">Get this Pokemon</a>
         </div>
       </div>
     </div>
   `;
+}
+
+async function registerServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    try {
+      await navigator.serviceWorker.register("sw.js");
+    } catch (error) {
+      console.log("Failed to register: ", error);
+    }
+  }
 }
