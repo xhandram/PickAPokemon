@@ -2,16 +2,17 @@
 <html>
   <head>
     <title>Pokemon Information List</title>
-    <meta name="theme-color" content="Puple" />
+    <meta name="theme-color" content="#900dff" />
     <meta name="description" content="An PWA to retrieve information about pokemons" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="apple-touch-icon" href="logo.png" />
+    <link rel="manifest" href="manifest.json">
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
+      rel="preload" as="style"
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-      crossorigin="anonymous"
+      crossorigin="anonymous" 
     />
     <link rel="stylesheet" href="main.css" />
   </head>
@@ -19,7 +20,7 @@
   <h2 class="title mt-5">Pokemon List</h2>
   <div class="row">
     <div class="col-md-3 mx-auto m-3">
-      <label for="pokemonlist">Select a Pokemon</label>
+      <label for="pokemonlist text-center" style="color:white"><b>Select a Pokemon</b></label>
       <select id="pokemonlist" name="pokemonlist" class="form-select text-uppercase" aria-label="Default select example">
         
       </select>
