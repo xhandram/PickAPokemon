@@ -44,8 +44,8 @@ function createPokemonCard(pokemon) {
       <div class="card-header text-capitalize pt-1 pb-1 text-center"><h4>${pokemon.name}</h4></div>
         <img src="${pokemon.sprites.other.dream_world.front_default}" class="text-center mx-auto d-block mt-3 mb-1" alt="${pokemon.name}" width="250px" height="auto">
         <div class="card-body text-center text-capitalize p-4">
-          <span class="badge bg-warning text-dark float-right">Height:${pokemon.height} </span>
-          <span class="badge bg-info text-dark float-right">Weight: ${pokemon.weight}</span>
+          <h3><span class="badge bg-warning text-dark ">Height:${pokemon.height} </span></h3>
+          <h3><span class="badge bg-info text-dark ">Weight: ${pokemon.weight}</span></h3>
           <hr class="divider">
           <p class="card-text">
             <div class="descripcion ", sytle="font-size:16px;">
@@ -54,7 +54,7 @@ function createPokemonCard(pokemon) {
 
             </div>
           </p>
-          <a href="#" class="btn btn-primary">Get this Pokemon</a>
+
         </div>
       </div>
     </div>
